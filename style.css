@@ -1,0 +1,325 @@
+/* Reset CSS - Remove margens e preenchimentos padrão de todos os elementos */
+* {
+    margin: 0; /* Remove margem externa */
+    padding: 0; /* Remove preenchimento interno */
+    box-sizing: border-box; /* Inclui padding e border na largura/altura total */
+}
+
+/* ============================================ */
+/* VARIÁVEIS CSS - DEFINIÇÃO DE TEMAS */
+/* ============================================ */
+
+/* ROOT - Define variáveis padrão para Dark Mode */
+:root {
+    /* Cores do DARK MODE - tema padrão */
+    --bg-primary: #141414; /* Cor de fundo primária escura */
+    --bg-secondary: #1f1f1f; /* Cor de fundo secundária (gradiente) */
+    --bg-tertiary: #2b2b2b; /* Cor de fundo terciária (gradiente) */
+    --text-primary: #ffffff; /* Cor de texto primária branca */
+    --text-secondary: #e0e0e0; /* Cor de texto secundária cinza claro */
+    --accent-color: #e50914; /* Cor de destaque vermelha Netflix */
+    --accent-dark: #8b0000; /* Cor de destaque escura */
+}
+
+/* LIGHT MODE - Sobrescreve variáveis quando tema for light */
+[data-theme="light"] {
+    --bg-primary: #f5f5f5; /* Fundo primário branco/cinza claro */
+    --bg-secondary: #ffffff; /* Fundo secundário branco puro */
+    --bg-tertiary: #e8e8e8; /* Fundo terciário cinza mais claro */
+    --text-primary: #1a1a1a; /* Texto primário preto/escuro */
+    --text-secondary: #666666; /* Texto secundário cinza médio */
+    --accent-color: #e50914; /* Mantém cor de destaque vermelha */
+    --accent-dark: #c40812; /* Vermelho mais escuro para light mode */
+}
+
+/* Estilos do corpo da página - Usa as variáveis CSS para flexibilidade temática */
+body {
+    background: linear-gradient(145deg, var(--bg-primary) 0%, var(--bg-secondary) 35%, var(--bg-tertiary) 100%); /* Gradiente usa variáveis de tema */
+    color: var(--text-primary); /* Cor do texto usa variável */
+    font-family: Arial, sans-serif; /* Fonte sans-serif padrão */
+    min-height: 100vh; /* Altura mínima de 100% da viewport */
+    display: flex; /* Usa flexbox para layout */
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    transition: background 0.3s ease, color 0.3s ease; /* Transição suave ao alternar tema */
+}
+
+/* Estilos do elemento main (conteúdo principal) */
+main {
+    text-align: center; /* Centraliza o texto */
+    padding: 40px 20px; /* Espaçamento interno: 40px cima/baixo, 20px esquerda/direita */
+}
+
+/* Estilos do título principal h1 */
+h1 {
+    font-size: 3em; /* Tamanho da fonte: 3 vezes o padrão */
+    margin-bottom: 60px; /* Margem inferior de 60px */
+    font-weight: 700; /* Peso da fonte: negrito forte */
+    color: var(--text-primary); /* Usa cor de texto do tema */
+}
+
+/* Estilos da lista de perfis */
+.profiles {
+    display: flex; /* Layout flexível */
+    justify-content: center; /* Centraliza os itens horizontalmente */
+    gap: 40px; /* Espaçamento de 40px entre itens */
+    flex-wrap: wrap; /* Permite quebra de linha se necessário */
+    list-style: none; /* Remove marcadores da lista */
+}
+
+/* Estilos de cada perfil individual */
+.profile {
+    cursor: pointer; /* Cursor de mão ao passar o mouse */
+    transition: transform 0.3s ease; /* Transição suave de 0.3s para transformações */
+}
+
+/* Efeito hover nos perfis - aumenta ligeiramente o tamanho */
+.profile:hover {
+    transform: scale(1.05); /* Aumenta 5% o tamanho ao passar o mouse */
+}
+
+/* Estilos dos links dentro dos perfis - Remove estilos padrão do navegador */
+.profile a {
+    text-decoration: none; /* Remove sublinhado */
+    color: inherit; /* Herda a cor do elemento pai (não fica azul) */
+}
+
+/* Estilos das imagens dos perfis */
+.profile img {
+    width: 200px; /* Largura fixa de 200px */
+    height: 200px; /* Altura fixa de 200px */
+    object-fit: cover; /* Corta a imagem para caber no espaço mantendo proporção */
+    border-radius: 180px; /* Bordas arredondadas para formato circular */
+    margin-bottom: 15px; /* Margem inferior de 15px */
+    border: 3px solid transparent; /* Borda transparente de 3px */
+    transition: border-color 0.3s ease; /* Transição suave da cor da borda */
+}
+
+/* Efeito hover nas imagens - muda a cor da borda */
+.profile:hover img {
+    border-color: var(--accent-color); /* Usa cor de destaque do tema */
+}
+
+/* Estilos do texto dos perfis (nomes) */
+.profile p {
+    font-size: 1.2em; /* Tamanho da fonte: 1.2 vezes o padrão */
+    font-weight: 500; /* Peso da fonte: médio */
+    color: var(--text-primary); /* Usa cor de texto do tema */
+}
+
+/* Estilos do link Configurações */
+.settings-link {
+    margin-top: 40px; /* Margem superior de 40px */
+    padding: 15px 30px; /* Espaçamento interno: 15px cima/baixo, 30px esquerda/direita */
+    background: var(--accent-color); /* Usa cor de destaque do tema */
+    color: white; /* Cor do texto branca */
+    text-decoration: none; /* Remove sublinhado */
+    border-radius: 5px; /* Bordas arredondadas */
+    font-size: 1.2em; /* Tamanho da fonte: 1.2 vezes o padrão */
+    font-weight: 500; /* Peso da fonte: médio */
+    display: inline-block; /* Para aplicar padding e margin corretamente */
+    transition: background 0.3s ease, transform 0.3s ease; /* Transições suaves */
+}
+
+/* Efeito hover no link Configurações */
+.settings-link:hover {
+    background: var(--accent-dark); /* Usa cor de destaque escura */
+    transform: scale(1.05); /* Aumenta ligeiramente */
+}
+
+/* ============================================ */
+/* ESTILOS DO BOTÃO DE ALTERNÂNCIA DE TEMA */
+/* ============================================ */
+
+/* Botão toggle de Dark/Light Mode */
+.theme-toggle {
+    position: fixed; /* Posicionamento fixo na tela */
+    top: 20px; /* 20px do topo */
+    right: 20px; /* 20px da direita */
+    background: transparent; /* Fundo transparente */
+    border: none; /* Remove borda padrão */
+    color: white; /* Cor do ícone branca */
+    width: 50px; /* Largura fixa de 50px */
+    height: 50px; /* Altura fixa de 50px */
+    border-radius: 50%; /* Formato circular perfeito */
+    font-size: 1.5em; /* Tamanho do ícone emoji */
+    cursor: pointer; /* Cursor de mão ao passar */
+    display: flex; /* Flexbox para centralizar ícone */
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transição suave para efeitos */
+    box-shadow: none; /* Remove sombra */
+    z-index: 11; /* Acima do watermark (z-index 10) */
+}
+
+/* Estilos do ícone de tema - Desenha lâmpada com CSS */
+.theme-icon {
+    display: block; /* Para funcionar como bloco */
+    width: 24px; /* Tamanho do ícone */
+    height: 24px; /* Tamanho do ícone */
+    position: relative; /* Para posicionar pseudo-elementos */
+}
+
+/* ========================================== */
+/* DESIGN DA LÂMPADA (Dark Mode - Branca) */
+/* ========================================== */
+
+.theme-icon::before {
+    content: ''; /* Conteúdo vazio - usamos CSS puro */
+    position: absolute;
+    width: 12px; /* Largura da lâmpada */
+    height: 14px; /* Altura da lâmpada */
+    border: 2px solid white; /* Borda branca para a lâmpada */
+    border-radius: 60% 60% 50% 50%; /* Forma de lâmpada arredondada */
+    top: 0px;
+    left: 6px;
+    background: transparent; /* Interior vazio */
+}
+
+/* Base/rosca da lâmpada - Dark Mode */
+.theme-icon::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 6px;
+    border: 2px solid white; /* Borda branca */
+    border-top: none; /* Remove borda superior */
+    border-radius: 0 0 4px 4px; /* Arredonda apenas a base */
+    top: 14px;
+    left: 4px;
+}
+
+/* ========================================== */
+/* DESIGN DA LÂMPADA (Light Mode - Preta) */
+/* ========================================== */
+
+[data-theme="light"] .theme-icon::before {
+    border-color: black; /* Lâmpada preta em light mode */
+}
+
+[data-theme="light"] .theme-icon::after {
+    border-color: black; /* Base preta em light mode */
+}
+
+/* Efeito hover no botão toggle */
+.theme-toggle:hover {
+    transform: scale(1.1); /* Aumenta 10% ao passar o mouse */
+}
+
+/* Efeito ativo no botão toggle */
+.theme-toggle:active {
+    transform: scale(0.95); /* Reduz ao clicar (efeito de pressão) */
+}
+
+/* Estilos da marca d'água */
+.watermark {
+    position: fixed; /* Posicionamento fixo na tela */
+    top: 20px; /* 20px do topo */
+    left: 20px; /* 20px da esquerda */
+    font-size: 2em; /* Tamanho da fonte: 2 vezes o padrão */
+    font-weight: bold; /* Fonte em negrito */
+    color: var(--accent-color); /* Usa cor de destaque do tema */
+    opacity: 0.8; /* Transparência de 80% */
+    z-index: 10; /* Camada superior para ficar acima de outros elementos */
+    display: flex; /* Flexbox para layout */
+    align-items: center; /* Centraliza verticalmente */
+    gap: 15px; /* Espaço entre logo e botão toggle */
+}
+
+/* ============================================ */
+/* RESPONSIVIDADE - MEDIA QUERIES */
+/* ============================================ */
+
+/* MOBILE - Dispositivos com até 480px de largura (smartphones pequenos) */
+@media (max-width: 480px) {
+    /* Reduz o tamanho do título principal para caber melhor em celulares */
+    h1 {
+        font-size: 1.8em; /* Reduz de 3em para 1.8em */
+        margin-bottom: 30px; /* Reduz espaçamento de 60px para 30px */
+    }
+
+    /* Ajusta padding do conteúdo para telas pequenas */
+    main {
+        padding: 60px 15px 15px 15px; /* Mais espaço no topo para o watermark, menos nas laterais */
+    }
+
+    /* Reduz tamanho das imagens dos perfis para mobile */
+    .profile img {
+        width: 120px; /* Reduz de 200px para 120px */
+        height: 120px; /* Reduz de 200px para 120px */
+        border-radius: 100px; /* Ajusta border-radius proporcionalmente */
+        margin-bottom: 10px; /* Reduz espaço entre imagem e nome */
+    }
+
+    /* Reduz espaçamento entre perfis */
+    .profiles {
+        gap: 20px; /* Reduz de 40px para 20px */
+    }
+
+    /* Reduz tamanho do texto dos nomes */
+    .profile p {
+        font-size: 0.9em; /* Reduz de 1.2em para 0.9em */
+    }
+
+    /* Reduz tamanho da marca d'água em celulares */
+    .watermark {
+        font-size: 1.2em; /* Reduz de 2em para 1.2em */
+        top: 10px; /* Reduz de 20px para 10px */
+        left: 10px; /* Reduz de 20px para 10px */
+    }
+}
+
+/* TABLET - Dispositivos entre 481px e 1024px de largura (tablets e iPads) */
+@media (min-width: 481px) and (max-width: 1024px) {
+    /* Ajusta o tamanho do título para tablets */
+    h1 {
+        font-size: 2.5em; /* Reduz de 3em para 2.5em */
+        margin-bottom: 45px; /* Reduz de 60px para 45px */
+    }
+
+    /* Ajusta padding do conteúdo para tablets */
+    main {
+        padding: 60px 30px 30px 30px; /* Mais padding que mobile, menos que desktop */
+    }
+
+    /* Reduz tamanho das imagens para tablets */
+    .profile img {
+        width: 160px; /* Reduz de 200px para 160px */
+        height: 160px; /* Reduz de 200px para 160px */
+        border-radius: 140px; /* Ajusta border-radius proporcionalmente */
+        margin-bottom: 12px; /* Reduz de 15px para 12px */
+    }
+
+    /* Ajusta espaçamento entre perfis em tablet */
+    .profiles {
+        gap: 30px; /* Reduz de 40px para 30px */
+    }
+
+    /* Tamanho de fonte ligeiramente reduzido */
+    .profile p {
+        font-size: 1em; /* Reduz de 1.2em para 1em */
+    }
+
+    /* Tamanho médio do watermark em tablet */
+    .watermark {
+        font-size: 1.6em; /* Reduz de 2em para 1.6em */
+        top: 15px; /* Reduz de 20px para 15px */
+        left: 15px; /* Reduz de 20px para 15px */
+    }
+}
+
+/* DESKTOP - Dispositivos com mais de 1024px de largura (computadores, laptops, smart TVs) */
+@media (min-width: 1025px) {
+    /* Desktop mantém os estilos originais (3em para h1, 200px para imagens, etc) */
+    /* Aqui você pode adicionar ajustes específicos para telas grandes se necessário */
+
+    /* Exemplo: adicionar mais espaço em telas muito largas */
+    main {
+        padding: 40px 40px; /* Aumenta padding um pouco em desktop grande */
+    }
+
+    /* Adiciona efeito visual extra no hover para desktop */
+    .profile:hover {
+        transform: scale(1.08); /* Aumenta ligeiramente o efeito de zoom */
+    }
+}

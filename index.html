@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fortflix</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body data-theme="dark">
+    <header class="watermark">
+        <span>Fortflix</span>
+        <!-- Botão para alternar entre Dark Mode e Light Mode -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Alternar modo escuro/claro">
+            <span class="theme-icon"></span>
+        </button>
+    </header>
+    <main>
+        <section class="profiles-section">
+            <h1>Quem está assistindo?</h1>
+            <ul class="profiles">
+                <li class="profile">
+                    <a href="catalogo/catalogo.html">
+                        <figure>
+                            <img src="./assets/banana.webp" alt="Perfil 1">
+                            <figcaption>Grant</figcaption>
+                        </figure>
+                    </a>
+                </li>
+                <li class="profile">
+                    <a href="catalogo/catalogo.html">
+                        <figure>
+                            <img src="./assets/Peixoto_Maroto.webp" alt="Perfil 2">
+                            <figcaption>Tom</figcaption>
+                        </figure>
+                    </a>
+                </li>
+                <li class="profile">
+                    <a href="catalogo/catalogo.html">
+                        <figure>
+                            <img src="./assets/aura.webp" alt="Perfil 3">
+                            <figcaption>Ana</figcaption>
+                        </figure>
+                    </a>
+                </li>
+                <li class="profile">
+                    <a href="catalogo/catalogo.html">
+                        <figure>
+                            <img src="./assets/ikonik.webp" alt="Perfil 4">
+                            <figcaption>Lucas</figcaption>
+                        </figure>
+                    </a>
+                </li>
+            </ul>
+            <a href="configuracoes.html" class="settings-link">Configurações</a>
+        </section>
+    </main>
+    <!-- Script do modo escuro/claro -->
+    <script src="./catalogo/js/theme.js"></script>
+    <!-- Script principal da página inicial -->
+    <script src="./catalogo/js/index.js"></script>
+</body>
+</html>
